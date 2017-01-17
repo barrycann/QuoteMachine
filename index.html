@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="quoteApp">
+   <head>
+      <title>Quote App</title>
+      <link rel="stylesheet" href="./styles/styles.css">
+      <link href="https://fonts.googleapis.com/css?family=Cardo|Montserrat" rel="stylesheet">
+   </head>
+   <body ng-controller="mainController">
+      <div class="main">
+         <h1>Quote Machine</h1>
+         <div class="input-area">
+            <p>Add a Quote: </p>
+            <input class="input-text" placeholder="Quote Text" ng-model="newQuoteText"/>
+            <input class="input-author" placeholder="Quote Author" ng-model="newQuoteAuthor"/>
+            <button ng-click="addQuote(newQuoteText, newQuoteAuthor)">+</button>
+         </div>
+         <div class="input-area">
+            <p>Filter: </p>
+            <input class="filter-input" placeholder="Filter Text" ng-model="filterPredicate"/>
+            <button ng-click="addQuote(newQuoteText, newQuoteAuthor)">+</button>
+         </div>
+         <ul>
+            <li class="list-item back-gradient" ng-repeat="quote in quotes | filter:filterPredicate">
+               <div class="quote-box">
+                  <p class="quote-text">{{quote.text}}</p>
+                  <p class="author-text">- {{quote.author}}</p> 
+               </div>
+               <div class="button-box">
+                  <button class="remove-button abs-centered" ng-click="removeQuote()">-</button>
+               </div>
+
+            </li>
+         </ul>
+         <div class="footer">
+            <p>&copy; Barry Cann 2017</p>
+         </div>
+      </div>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+      <script src="./js/app.js"></script>
+      <script src="./js/mainController.js"></script>
+      <script src="./js/services.js"></script>
+   </body>
+</html>
